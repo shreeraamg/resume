@@ -1,0 +1,44 @@
+name: Build Resume
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'resume.tex'
+      - 'custom-commands.tex'
+
+jobs:
+  build:
+    name: Build Resume
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.RESUME_PAT }}
+
+      - name: Compile LaTeX
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: resume.tex
+
+      - name: Prepare Output
+        run: |
+          mkdir -p output
+          mv resume.pdf output/resume.pdf
+
+      - name: Commit Generated PDF
+        run: |
+          git config user.name "Shreeram G"
+          git config user.email "shreeram0312@gmail.com"
+
+          git add output/resume.pdf
+
+          if git diff --cached --quiet; then
+            echo "No PDF changes to commit."
+          else
+            git commit -m "chore: update generated resume"
+            git push
+          fi
