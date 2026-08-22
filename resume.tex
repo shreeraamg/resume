@@ -1,10 +1,3 @@
-%-------------------------
-% Resume in Latex
-% Author : Audric Serador
-% Inspired by: https://github.com/sb2nov/resume
-% License : MIT
-%------------------------
-
 \documentclass[letterpaper,11pt]{article}
 
 \usepackage{fontawesome5}
@@ -58,23 +51,23 @@
 \begin{document}
 \include{custom-commands}
 
-%-------------------------------------------%
-%%%%%%  RESUME STARTS HERE  %%%%%
-
 %----------HEADING----------%
 \input{src/heading}
 
-%-----------EDUCATION-----------%
-\input{src/education.tex}
+%-----------SUMMARY-----------%
+\input{src/summary.tex}
 
 %-----------EXPERIENCE-----------%
 \input{src/experience}
 
-%-----------PROJECTS-----------%
-\input{src/projects}
-
 %-----------SKILLS-----------%
 \input{src/skills.tex}
+
+%-----------EDUCATION-----------%
+\input{src/education.tex}
+
+%-----------CERTIFICATION-----------%
+\input{src/certifications}
 
 %-------------------------------------------%
 \end{document}
